@@ -124,6 +124,22 @@
   }
 }
 
+@media only screen and (max-width: 767px) {
+  .cta-banner-container {
+    align-items: center;
+    text-align: center;
+  }
+  
+  .cta-banner-content {
+    align-items: center;
+  }
+  
+  .cta-banner-buttons {
+    justify-content: center;
+    width: 100%;
+  }
+}
+
 @media only screen and (max-width: 480px) {
   .cta-banner-title {
     font-size: 24px;
@@ -131,5 +147,6 @@
   
   .cta-btn {
     width: 100%;
+    max-width: 300px;
   }
 }
