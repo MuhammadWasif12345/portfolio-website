@@ -1,15 +1,23 @@
+import { config } from "../config";
 import "./styles/CTABanner.css";
 
 const CTABanner = () => {
   const email = "wasifghori71@gmail.com";
-  const whatsappNumber = "1234567890"; // TODO: Replace with actual WhatsApp number without + or spaces
+  const whatsappNumber = "923092335781";
 
-  const message = `Hi Muhammad Wasif! I saw your portfolio and I'm interested in working with you. Could you provide more info on your services and pricing? 
+  const message = `Hello Muhammad Wasif,
 
-Here are my details:
-- Name: 
-- Email: 
-- Project Type: `;
+I recently came across your portfolio and was impressed by your work. I have a project in mind and would love to learn more about your process, availability, and how we might work together.
+
+Here are my details so we can discuss a potential estimate:
+
+My Name: [Client Name]
+
+My Email: [Client Email]
+
+Project Overview / Type of Work: [Briefly describe the project]
+
+Looking forward to connecting!`;
 
   const encodedMessage = encodeURIComponent(message);
   const whatsappLink = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
