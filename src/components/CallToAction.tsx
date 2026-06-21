@@ -9,15 +9,15 @@ const CallToAction = () => {
   const whatsappNumber = "923092335781";
   const hireMessage = `Hello Muhammad Wasif,
 
-I am absolutely blown away by your 3D portfolio and the quality of your work! I am extremely interested in hiring you for my project.
+I recently viewed your portfolio and was very impressed by the quality of your work. I am interested in discussing a potential project with you.
 
-Your skills in Full-Stack development, AI, and modern UI design are exactly what I need. Let's discuss my requirements, your availability, and how we can get started as soon as possible.
+Your skills in Full-Stack development, AI, and modern UI design align well with what we are looking for. I would like to discuss our requirements, your availability, and how we might proceed.
 
 My details:
 Name: 
 Company/Project: 
 
-Looking forward to working with you!`;
+Looking forward to hearing from you!`;
 
   const encodedHireMessage = encodeURIComponent(hireMessage);
   const hireLink = `https://wa.me/${whatsappNumber}?text=${encodedHireMessage}`;
