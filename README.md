@@ -1,57 +1,59 @@
-# 🚀 3D Developer Portfolio Website (React + TypeScript + Three.js)
+# 🚀 Muhammad Wasif - 3D Developer Portfolio
 
 [![3D portfolio preview (click to watch video)](./Screenshot_2026-04-08_22-10-00.png)](./screen-capture%20(13).webm)
 
-A modern, high-performance **3D developer portfolio website** built with **React**, **TypeScript**, **Three.js**, **GSAP**, and **WebGL**.
+A state-of-the-art, high-performance **3D developer portfolio website** built with **React**, **TypeScript**, **Three.js**, **GSAP**, and **WebGL**.
 
-If you’re a developer looking for a **portfolio template** that feels premium, interactive, and memorable—this repo is for you.
+Welcome to my personal interactive portfolio repository! I am an **AI Engineer & Full-Stack Developer** passionate about building cutting-edge web applications and immersive digital experiences.
 
-> Live preview: https://www.redoyanulhaque.me/
+> **Live Preview:** [Click Here to View Live (Vercel)](https://portfolio-website-muhammadwasif12345.vercel.app/) *(Update this link if your Vercel URL is different)*
 
 ---
 
 ## ✨ Highlights
 
-- **3D / WebGL experience** powered by **Three.js**
-- Smooth animations with **GSAP**
-- Modern **React + TypeScript** codebase
-- Fast, responsive UI (desktop + mobile)
-- Designed for developers, engineers, programmers, and creators
+- **Custom 3D / WebGL Avatar** powered by **Three.js**
+- Butter-smooth entrance animations & scrolling with **GSAP & Lenis**
+- Premium, sleek, modern dark-mode aesthetics
+- Fully responsive across desktop, tablet, and mobile browsers
+- Clean, modular **React + TypeScript** architecture
 
 ---
 
 ## 🧰 Tech Stack
 
-- **React**
-- **TypeScript**
-- **Three.js / WebGL**
-- **GSAP**
-- **HTML / CSS / JavaScript**
+- **Frontend Framework:** React, TypeScript, HTML5
+- **3D & Rendering:** Three.js, React Three Fiber, WebGL, DRACOLoader
+- **Animations:** GSAP (GreenSock), ScrollTrigger, Lenis Smooth Scroll
+- **Styling:** Vanilla CSS
+- **Deployment:** Vercel
 
 ---
 
-## 🚀 Getting Started
+## 🚀 Running Locally
+
+Want to run this code on your own machine?
 
 ### 1) Clone
 
 ```bash
-git clone https://github.com/red1-for-hek/portfolio-website.git
+git clone https://github.com/MuhammadWasif12345/portfolio-website.git
 cd portfolio-website
 ```
 
-### 2) Install
+### 2) Install Dependencies
 
 ```bash
 npm install
 ```
 
-### 3) Run locally
+### 3) Start Development Server
 
 ```bash
 npm run dev
 ```
 
-### 4) Build
+### 4) Build for Production
 
 ```bash
 npm run build
@@ -59,38 +61,19 @@ npm run build
 
 ---
 
-## 🧩 Customize (Quick Guide)
+## 🤝 Connect With Me
 
-Typical things you’ll want to update:
+If you like this project or want to collaborate on something awesome, feel free to reach out!
 
-- **Your name + hero section text**
-- **Projects list**
-- **Social links** (GitHub, LinkedIn, email)
-- **SEO meta title/description**
+- **Email:** wasifghori71@gmail.com
+- **GitHub:** [MuhammadWasif12345](https://github.com/MuhammadWasif12345)
+- **LinkedIn:** [Muhammad Wasif](https://www.linkedin.com/in/muhammad-wasif/) *(Please update this link with your actual LinkedIn profile!)*
 
 ---
 
 ## ⭐ Support
 
-If you found this useful:
-
-- Please **star** the repository (it helps a lot)
-- Share it with a friend who needs a portfolio template
-- Sponsor via the **Sponsor** button on GitHub (if available in your region)
-
----
-
-## 🤝 Connect
-
-- LinkedIn: https://www.linkedin.com/in/red1-for-hek/
-
----
-
-## 🏷️ Recommended GitHub Topics (add in repo settings)
-
-Add these topics to improve GitHub search visibility:
-
-`portfolio` `developer-portfolio` `portfolio-website` `portfolio-template` `3d-portfolio` `react` `typescript` `threejs` `webgl` `gsap` `frontend` `vite`
+If you found this codebase useful or inspiring, please give it a **star** ⭐ on GitHub to help others discover it!
 
 ---
 
