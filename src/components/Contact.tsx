@@ -133,7 +133,7 @@ const Contact = () => {
           </div>
           <div className="contact-box">
             <h2>
-              Designed and developed <br /> by <span>{config.developer.fullName}</span>
+              All Rights Reserved <br /> by <span>{config.developer.fullName}</span>
             </h2>
             <h5>
               <MdCopyright /> {new Date().getFullYear()}
