@@ -47,7 +47,6 @@ const Navbar = () => {
           let section = elem.getAttribute("data-href");
           
           setIsMenuOpen(false); // Close menu on click
-          document.body.style.overflow = ""; // Immediately unlock body scroll
           
           if (section && lenis) {
             const target = document.querySelector(section) as HTMLElement;
@@ -78,12 +77,12 @@ const Navbar = () => {
     };
   }, []);
 
-  // Lock body scroll when menu is open
+  // Lock scroll when menu is open using Lenis instead of body overflow
   useEffect(() => {
     if (isMenuOpen) {
-      document.body.style.overflow = "hidden";
+      lenis?.stop();
     } else {
-      document.body.style.overflow = "";
+      lenis?.start();
     }
   }, [isMenuOpen]);
 
