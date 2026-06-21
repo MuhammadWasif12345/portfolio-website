@@ -11,30 +11,39 @@ const Loading = ({ percent }: { percent: number }) => {
   const [clicked, setClicked] = useState(false);
 
   useEffect(() => {
+    let timer1: NodeJS.Timeout;
+    let timer2: NodeJS.Timeout;
+
     if (percent >= 100) {
-      const timer1 = setTimeout(() => {
+      timer1 = setTimeout(() => {
         setLoaded(true);
-        const timer2 = setTimeout(() => {
+        timer2 = setTimeout(() => {
           setIsLoaded(true);
         }, 1000);
-        return () => clearTimeout(timer2);
       }, 600);
-      return () => clearTimeout(timer1);
     }
+
+    return () => {
+      clearTimeout(timer1);
+      clearTimeout(timer2);
+    };
   }, [percent]);
 
   useEffect(() => {
-    import("./utils/initialFX").then((module) => {
-      if (isLoaded) {
-        setClicked(true);
-        setTimeout(() => {
-          if (module.initialFX) {
+    let timer3: NodeJS.Timeout;
+    if (isLoaded) {
+      setClicked(true);
+      import("./utils/initialFX").then((module) => {
+        timer3 = setTimeout(() => {
+          if (module.initialFX && !(window as any).initialFXRan) {
+            (window as any).initialFXRan = true; // Prevent double execution
             module.initialFX();
           }
           setIsLoading(false);
         }, 900);
-      }
-    });
+      });
+    }
+    return () => clearTimeout(timer3);
   }, [isLoaded]);
 
   function handleMouseMove(e: React.MouseEvent<HTMLElement>) {
@@ -98,6 +107,7 @@ export default Loading;
 
 export const setProgress = (setLoading: (value: number) => void) => {
   let percent: number = 0;
+  let hasResolved = false;
 
   let interval = setInterval(() => {
     if (percent <= 50) {
@@ -107,22 +117,38 @@ export const setProgress = (setLoading: (value: number) => void) => {
     } else {
       clearInterval(interval);
       interval = setInterval(() => {
-        percent = percent + Math.round(Math.random() * 3) + 1;
-        setLoading(percent);
-        if (percent > 91) {
-          clearInterval(interval);
+        if (!hasResolved) {
+          percent = percent + Math.round(Math.random() * 3) + 1;
+          setLoading(percent);
+          if (percent > 91) {
+            clearInterval(interval);
+            // Fallback: If 4 seconds pass and model still hasn't loaded, force open
+            setTimeout(() => {
+              if (!hasResolved) {
+                console.warn("Bypassing loading screen due to timeout");
+                loaded();
+              }
+            }, 4000);
+          }
         }
       }, 150);
     }
   }, 50);
 
   function clear() {
+    if (hasResolved) return;
+    hasResolved = true;
     clearInterval(interval);
     setLoading(100);
   }
 
   function loaded() {
     return new Promise<number>((resolve) => {
+      if (hasResolved) {
+        resolve(100);
+        return;
+      }
+      hasResolved = true;
       clearInterval(interval);
       interval = setInterval(() => {
         if (percent < 100) {
@@ -135,5 +161,6 @@ export const setProgress = (setLoading: (value: number) => void) => {
       }, 2);
     });
   }
-  return { loaded, percent, clear };
+
+  return { clear, loaded };
 };
