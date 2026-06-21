@@ -45,16 +45,21 @@ const Navbar = () => {
           e.preventDefault();
           let elem = e.currentTarget as HTMLAnchorElement;
           let section = elem.getAttribute("data-href");
+          
+          setIsMenuOpen(false); // Close menu on click
+          document.body.style.overflow = ""; // Immediately unlock body scroll
+          
           if (section && lenis) {
             const target = document.querySelector(section) as HTMLElement;
             if (target) {
-              lenis.scrollTo(target, {
-                offset: 0,
-                duration: 1.5,
-              });
+              setTimeout(() => {
+                lenis?.scrollTo(target, {
+                  offset: 0,
+                  duration: 1.5,
+                });
+              }, 100);
             }
           }
-          setIsMenuOpen(false); // Close menu on click
         }
       });
     });
