@@ -5,7 +5,19 @@ const CTABanner = () => {
   const email = "wasifghori71@gmail.com";
   const whatsappNumber = "923092335781";
 
-  const message = `Hello Muhammad Wasif,\n\nI recently came across your portfolio and was impressed by your work. I have a project in mind and would love to learn more about your process, availability, and how we might work together.\n\nHere are my details so we can discuss a potential estimate:\n\nMy Name: [Client Name]\n\nMy Email: [Client Email]\n\nProject Overview / Type of Work: [Briefly describe the project]\n\nLooking forward to connecting!`;
+  const message = `Hello Muhammad Wasif,
+
+I recently came across your portfolio and was impressed by your work. I have a project in mind and would love to learn more about your process, availability, and how we might work together.
+
+Here are my details so we can discuss a potential estimate:
+
+My Name: 
+
+My Email: 
+
+Project Overview / Type of Work: [Briefly describe the project]
+
+Looking forward to connecting!`;
 
   const encodedMessage = encodeURIComponent(message);
   const whatsappLink = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
