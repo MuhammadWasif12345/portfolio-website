@@ -6,6 +6,7 @@
   padding: 60px 20px;
   position: relative;
   z-index: 10;
+  box-sizing: border-box;
 }
 
 .cta-banner-container {
@@ -25,6 +26,7 @@
   box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.5);
   position: relative;
   overflow: hidden;
+  box-sizing: border-box;
 }
 
 /* Subtle glowing accent on the top edge */
