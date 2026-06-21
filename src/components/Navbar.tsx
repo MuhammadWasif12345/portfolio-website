@@ -14,15 +14,13 @@ const Navbar = () => {
 
     // Initialize Lenis smooth scroll for all devices (desktop & mobile)
     lenis = new Lenis({
-      duration: 0.6, // Extremely fast and snappy
+      duration: 1.2, // Elegant, professional smooth scrolling
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       orientation: "vertical",
       gestureOrientation: "vertical",
       smoothWheel: true,
-      smoothTouch: true,
-      syncTouch: true,
-      wheelMultiplier: 1.5,
-      touchMultiplier: 3.5, // Much faster swipe response on mobile
+      wheelMultiplier: 1.0,
+      touchMultiplier: 2.0,
       infinite: false,
     });
 
