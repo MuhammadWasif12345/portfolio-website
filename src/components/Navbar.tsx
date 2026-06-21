@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import HoverLinks from "./HoverLinks";
 import { gsap } from "gsap";
@@ -9,6 +9,8 @@ gsap.registerPlugin(ScrollTrigger);
 export let lenis: Lenis | null = null;
 
 const Navbar = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
   useEffect(() => {
     const isDesktop = window.innerWidth > 1024;
 
@@ -35,11 +37,11 @@ const Navbar = () => {
     requestAnimationFrame(raf);
 
     // Handle navigation links
-    let links = document.querySelectorAll(".header ul a");
+    let links = document.querySelectorAll(".header ul a, .mobile-menu-links a");
     links.forEach((elem) => {
       let element = elem as HTMLAnchorElement;
       element.addEventListener("click", (e) => {
-        if (window.innerWidth > 1024) {
+        if (window.innerWidth > 1024 || element.closest('.mobile-menu-links')) {
           e.preventDefault();
           let elem = e.currentTarget as HTMLAnchorElement;
           let section = elem.getAttribute("data-href");
@@ -52,6 +54,7 @@ const Navbar = () => {
               });
             }
           }
+          setIsMenuOpen(false); // Close menu on click
         }
       });
     });
@@ -59,6 +62,9 @@ const Navbar = () => {
     // Handle resize
     window.addEventListener("resize", () => {
       lenis?.resize();
+      if (window.innerWidth > 768) {
+        setIsMenuOpen(false);
+      }
     });
 
     return () => {
@@ -66,6 +72,16 @@ const Navbar = () => {
       lenis = null;
     };
   }, []);
+
+  // Lock body scroll when menu is open
+  useEffect(() => {
+    if (isMenuOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+  }, [isMenuOpen]);
+
   return (
     <>
       <div className="header">
@@ -79,7 +95,9 @@ const Navbar = () => {
         >
           wasifghori71@gmail.com
         </a>
-        <ul>
+        
+        {/* Desktop Links */}
+        <ul className="desktop-links">
           <li>
             <a data-href="#about" href="#about">
               <HoverLinks text="ABOUT" />
@@ -96,6 +114,28 @@ const Navbar = () => {
             </a>
           </li>
         </ul>
+
+        {/* Hamburger Icon (Mobile) */}
+        <div className="hamburger-icon" onClick={() => setIsMenuOpen(true)}>
+          <div className="bar"></div>
+          <div className="bar"></div>
+          <div className="bar"></div>
+        </div>
+      </div>
+
+      {/* Mobile Menu Overlay */}
+      <div className={`mobile-menu-overlay ${isMenuOpen ? "open" : ""}`}>
+        <div className="mobile-menu-header">
+          <a href="/#" className="navbar-title" onClick={() => setIsMenuOpen(false)}>MW</a>
+          <button className="close-btn" onClick={() => setIsMenuOpen(false)}>
+            ✕
+          </button>
+        </div>
+        <div className="mobile-menu-links">
+          <a data-href="#about" href="#about">ABOUT</a>
+          <a data-href="#work" href="#work">WORK</a>
+          <a data-href="#contact" href="#contact">CONTACT</a>
+        </div>
       </div>
 
       <div className="landing-circle1"></div>

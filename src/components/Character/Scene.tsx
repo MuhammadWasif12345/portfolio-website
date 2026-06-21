@@ -61,8 +61,9 @@ const Scene = () => {
       let mmChar: ReturnType<typeof setCharTimeline> | undefined;
       let mmAll: ReturnType<typeof setAllTimeline> | undefined;
 
-      loadCharacter().then((gltf) => {
-        if (!isMounted) return;
+      loadCharacter()
+        .then((gltf) => {
+          if (!isMounted) return;
         if (gltf) {
           const animations = setAnimations(gltf);
           hoverDivRef.current && animations.hover(gltf, hoverDivRef.current);
@@ -81,8 +82,10 @@ const Scene = () => {
             }, 2500);
           });
         }
+      }).catch((e) => {
+        console.error("3D Model Error: " + e);
+        progress.loaded();
       });
-
       const handleResizeWrapper = () => {
         handleResize(renderer, camera, canvasDiv, null as any);
       };
