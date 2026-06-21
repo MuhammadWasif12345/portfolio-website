@@ -10,7 +10,6 @@ import WhatIDo from "./WhatIDo";
 import Work from "./Work";
 import TechStackNew from "./TechStackNew";
 import CallToAction from "./CallToAction";
-import FooterCTA from "./FooterCTA";
 import CTABanner from "./CTABanner";
 import setSplitText from "./utils/splitText";
 import gsap from "gsap";
