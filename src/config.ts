@@ -104,11 +104,11 @@ export const config = {
     projects: [
         {
             id: 1,
-            title: "Drishti",
+            title: "NOVA AI",
             category: "AI / LLM",
             technologies: "Python, PyTorch, Transformers, FastAPI, React, MongoDB",
-            image: "/images/drishti.png",
-            description: "Bangladesh's first intelligent advanced AI chatbot powered by a custom Large Language Model. Features natural language understanding, contextual conversations, and multilingual support including Bengali."
+            image: "/images/nova_ai.png",
+            description: "An advanced, intelligent AI chatbot powered by a custom Large Language Model. Features natural language understanding, contextual conversations, and seamless real-time responses."
         },
         {
             id: 2,
