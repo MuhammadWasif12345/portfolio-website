@@ -1,0 +1,135 @@
+.cta-banner-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 60px 20px;
+  position: relative;
+  z-index: 10;
+}
+
+.cta-banner-container {
+  max-width: 1200px;
+  width: 100%;
+  background: rgba(194, 164, 255, 0.05);
+  border: 1px solid rgba(194, 164, 255, 0.15);
+  border-radius: 16px;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 30px;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.5);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Subtle glowing accent on the top edge */
+.cta-banner-container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--accentColor), transparent);
+  opacity: 0.5;
+}
+
+.cta-banner-content {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  max-width: 700px;
+}
+
+.cta-banner-title {
+  font-size: 28px;
+  font-weight: 600;
+  color: #eae5ec;
+  margin: 0;
+  line-height: 1.2;
+}
+
+.cta-banner-title span {
+  color: var(--accentColor);
+  font-weight: 700;
+}
+
+.cta-banner-desc {
+  font-size: 16px;
+  color: #a09da3;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.cta-banner-buttons {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.cta-btn {
+  padding: 12px 24px;
+  border-radius: 30px;
+  font-size: 15px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.whatsapp-btn {
+  background-color: var(--accentColor);
+  color: #0b080c;
+  border: 1px solid var(--accentColor);
+}
+
+.whatsapp-btn:hover {
+  background-color: #a88be0;
+  box-shadow: 0 0 15px rgba(194, 164, 255, 0.4);
+}
+
+.email-btn {
+  background-color: transparent;
+  color: var(--accentColor);
+  border: 1px solid rgba(194, 164, 255, 0.4);
+}
+
+.email-btn:hover {
+  background-color: rgba(194, 164, 255, 0.1);
+  border-color: var(--accentColor);
+}
+
+/* Responsive Design */
+@media only screen and (min-width: 768px) {
+  .cta-banner-container {
+    flex-direction: row;
+    align-items: center;
+    padding: 50px 60px;
+  }
+
+  .cta-banner-title {
+    font-size: 32px;
+  }
+
+  .cta-banner-desc {
+    font-size: 18px;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .cta-banner-title {
+    font-size: 24px;
+  }
+  
+  .cta-btn {
+    width: 100%;
+  }
+}
