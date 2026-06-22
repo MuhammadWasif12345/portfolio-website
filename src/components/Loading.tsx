@@ -19,8 +19,8 @@ const Loading = ({ percent }: { percent: number }) => {
         setLoaded(true);
         timer2 = setTimeout(() => {
           setIsLoaded(true);
-        }, 1000);
-      }, 600);
+        }, 400);
+      }, 200);
     }
 
     return () => {
@@ -40,7 +40,7 @@ const Loading = ({ percent }: { percent: number }) => {
             module.initialFX();
           }
           setIsLoading(false);
-        }, 900);
+        }, 400);
       });
     }
     return () => clearTimeout(timer3);
@@ -109,31 +109,18 @@ export const setProgress = (setLoading: (value: number) => void) => {
   let percent: number = 0;
   let hasResolved = false;
 
+  // Reaches 100% in 3.5 seconds (35ms * 100) smoothly without stopping
   let interval = setInterval(() => {
-    if (percent <= 50) {
-      let rand = Math.round(Math.random() * 5) + 5;
-      percent = percent + rand;
+    if (percent < 100) {
+      percent += 1;
       setLoading(percent);
     } else {
       clearInterval(interval);
-      interval = setInterval(() => {
-        if (!hasResolved) {
-          percent = percent + Math.round(Math.random() * 3) + 1;
-          setLoading(percent);
-          if (percent > 91) {
-            clearInterval(interval);
-            // Fallback: If 4 seconds pass and model still hasn't loaded, force open
-            setTimeout(() => {
-              if (!hasResolved) {
-                console.warn("Bypassing loading screen due to timeout");
-                loaded();
-              }
-            }, 4000);
-          }
-        }
-      }, 150);
+      if (!hasResolved) {
+        hasResolved = true;
+      }
     }
-  }, 50);
+  }, 35);
 
   function clear() {
     if (hasResolved) return;
@@ -150,6 +137,7 @@ export const setProgress = (setLoading: (value: number) => void) => {
       }
       hasResolved = true;
       clearInterval(interval);
+      // Speed up to 100% if loaded is called early
       interval = setInterval(() => {
         if (percent < 100) {
           percent++;
