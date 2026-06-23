@@ -12,29 +12,31 @@ const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   useEffect(() => {
-    const isDesktop = window.innerWidth > 1024;
+    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || window.innerWidth <= 1024;
 
-    // Initialize Lenis smooth scroll for all devices (desktop & mobile)
-    lenis = new Lenis({
-      duration: 1.2, // Elegant, professional smooth scrolling
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      orientation: "vertical",
-      gestureOrientation: "vertical",
-      smoothWheel: true,
-      wheelMultiplier: 1.0,
-      touchMultiplier: 2.0,
-      infinite: false,
-    });
+    // Only initialize Lenis on Desktop. Mobile native scrolling is already smooth and JS smooth-scrolling causes glitches.
+    if (!isMobile) {
+      lenis = new Lenis({
+        duration: 1.2, // Elegant, professional smooth scrolling
+        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+        orientation: "vertical",
+        gestureOrientation: "vertical",
+        smoothWheel: true,
+        wheelMultiplier: 1.0,
+        touchMultiplier: 2.0,
+        infinite: false,
+      });
 
-    // Start paused (started later by initialFX)
-    lenis.stop();
+      // Start paused (started later by initialFX)
+      lenis.stop();
 
-    // Handle smooth scroll animation frame
-    function raf(time: number) {
-      lenis?.raf(time);
+      // Handle smooth scroll animation frame
+      function raf(time: number) {
+        lenis?.raf(time);
+        requestAnimationFrame(raf);
+      }
       requestAnimationFrame(raf);
     }
-    requestAnimationFrame(raf);
 
     // Handle navigation links
     let links = document.querySelectorAll(".header ul a, .mobile-menu-links a");
