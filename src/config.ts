@@ -138,11 +138,12 @@ export const config = {
         },
         {
             id: 5,
-            title: "RedxChess",
-            category: "AI / Game Engine",
-            technologies: "Python, C++, Neural Networks, Bitboards, UCI Protocol",
-            image: "/images/redxchess.png",
-            description: "A high-performance chess engine rated 3640 ELO. Features advanced search algorithms, neural network evaluation, and optimized bitboard representation for lightning-fast move generation."
+            title: "Glitch-WebGL-Project",
+            category: "Web3D / Frontend",
+            technologies: "React, Three.js, WebGL, GSAP",
+            image: "https://github.com/user-attachments/assets/b4eaf37c-2c1f-41af-87b6-a45256714fff",
+            description: "My WebGL interactive showcase featuring immersive 3D typography, particle effects, and advanced glitch shaders. Built with Three.js and React.",
+            link: "https://glitch-webgl-showcase.vercel.app/"
         },
         {
             id: 6,
