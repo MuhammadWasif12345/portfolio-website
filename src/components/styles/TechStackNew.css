@@ -7,6 +7,8 @@
   justify-content: center;
   overflow: hidden;
   padding: 80px 0;
+  /* Isolate this section so scroll repaints stay contained */
+  contain: layout style;
 }
 
 /* Video Background */
@@ -23,6 +25,8 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+  /* GPU-accelerate the video layer */
+  will-change: transform;
 }
 
 /* Dark Overlay */
@@ -115,7 +119,7 @@
   border: 1px solid rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
-  transition: all 0.3s ease;
+  transition: transform 0.3s ease, background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
   text-decoration: none;
   cursor: pointer;
 }
@@ -156,24 +160,45 @@
   color: #fff;
 }
 
-/* Responsive */
-@media screen and (max-width: 1200px) {
-  .techstack-content {
-    max-width: 900px;
+/* ============================================
+   MOBILE PERFORMANCE: Kill GPU-heavy effects
+   ============================================ */
+@media screen and (max-width: 1024px) {
+  /* Keep video but GPU-isolate it so scroll is not affected */
+  .techstack-video-container {
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    will-change: transform;
   }
-  
+
+  .techstack-video {
+    display: block; /* Keep video visible */
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    pointer-events: none;
+  }
+
+  /* Remove backdrop-filter on ALL mobile card sizes — blur on 40+ elements kills GPU */
   .techstack-item {
-    width: 50px;
-    height: 62px;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    /* Disable hover transform on touch — causes jank */
+    transition: none;
   }
-  
-  .techstack-item img {
-    width: 26px;
-    height: 26px;
+
+  /* Keep hover working on desktop-sized tablets that have pointer */
+  @media (hover: hover) {
+    .techstack-item {
+      transition: transform 0.3s ease, background 0.3s ease;
+    }
   }
-  
-  .techstack-item span {
-    font-size: 8px;
+
+  .techstack-item:hover {
+    transform: none;
   }
 }
 
@@ -182,37 +207,29 @@
     font-size: 50px;
     margin-bottom: 35px;
   }
-  
+
   .techstack-pyramid {
     gap: 8px;
   }
-  
+
   .techstack-row {
     gap: 8px;
   }
-  
+
   .techstack-item {
     width: 45px;
     height: 56px;
     padding: 6px;
   }
-  
+
   .techstack-item img {
     width: 22px;
     height: 22px;
   }
-  
+
   .techstack-item span {
     font-size: 7px;
     max-width: 42px;
-  }
-  
-  .techstack-item {
-    /* Disable expensive blur on mobile to fix lag */
-    backdrop-filter: none;
-    -webkit-backdrop-filter: none;
-    background: rgba(255, 255, 255, 0.08); /* slightly more solid since blur is gone */
-    border: 1px solid rgba(255, 255, 255, 0.15);
   }
 }
 
@@ -220,27 +237,27 @@
   .techstack-content h2 {
     font-size: 36px;
   }
-  
+
   .techstack-pyramid {
     gap: 6px;
   }
-  
+
   .techstack-row {
     gap: 6px;
   }
-  
+
   .techstack-item {
     width: 40px;
     height: 50px;
     padding: 5px;
     border-radius: 8px;
   }
-  
+
   .techstack-item img {
     width: 20px;
     height: 20px;
   }
-  
+
   .techstack-item span {
     font-size: 6px;
     max-width: 38px;

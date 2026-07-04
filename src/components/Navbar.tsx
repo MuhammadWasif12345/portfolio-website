@@ -8,35 +8,48 @@ import "./styles/Navbar.css";
 gsap.registerPlugin(ScrollTrigger);
 export let lenis: Lenis | null = null;
 
+const isMobileDevice = () =>
+  /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ||
+  window.innerWidth <= 1024;
+
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   useEffect(() => {
-    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || window.innerWidth <= 1024;
+    const mobile = isMobileDevice();
 
-    // Only initialize Lenis on Desktop. Mobile native scrolling is already smooth and JS smooth-scrolling causes glitches.
-    if (!isMobile) {
+    if (mobile) {
+      // Mobile: high lerp for native-feel instant response
       lenis = new Lenis({
-        duration: 1.2, // Elegant, professional smooth scrolling
-        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-        orientation: "vertical",
+        lerp: 0.15,             // Higher = snappier response to touch
+        gestureOrientation: "vertical",
+        smoothWheel: false,
+        touchMultiplier: 2.5,   // Matches natural finger-to-scroll ratio
+        overscroll: false,      // Prevent bounce that fights Lenis
+        infinite: false,
+      });
+    } else {
+      // Desktop: lerp-based (more responsive than duration — follows velocity naturally)
+      lenis = new Lenis({
+        lerp: 0.11,             // Butter-smooth with minimal lag
         gestureOrientation: "vertical",
         smoothWheel: true,
         wheelMultiplier: 1.0,
-        touchMultiplier: 2.0,
         infinite: false,
       });
-
-      // Start paused (started later by initialFX)
-      lenis.stop();
-
-      // Handle smooth scroll animation frame
-      function raf(time: number) {
-        lenis?.raf(time);
-        requestAnimationFrame(raf);
-      }
-      requestAnimationFrame(raf);
     }
+
+    // Start immediately
+    lenis.start();
+
+    // Drive Lenis ONLY from GSAP ticker — never use a separate rAF loop
+    // (two loops competing = wasted CPU + potential desync)
+    lenis.on("scroll", ScrollTrigger.update);
+    gsap.ticker.add((time) => {
+      lenis?.raf(time * 1000);
+    });
+    // Prevent GSAP from compensating for lag — let Lenis handle timing
+    gsap.ticker.lagSmoothing(0);
 
     // Handle navigation links
     let links = document.querySelectorAll(".header ul a, .mobile-menu-links a");

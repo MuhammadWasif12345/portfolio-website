@@ -4,7 +4,6 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import setCharacter from "./utils/character";
 import setLighting from "./utils/lighting";
-import { useLoading } from "../../context/LoadingProvider";
 import handleResize from "./utils/resizeUtils";
 import {
   handleMouseMove,
@@ -13,15 +12,12 @@ import {
   handleTouchMove,
 } from "./utils/mouseUtils";
 import setAnimations from "./utils/animationUtils";
-import { setProgress } from "../Loading";
 import { setCharTimeline, setAllTimeline } from "../utils/GsapScroll";
 
 const Scene = () => {
   const canvasDiv = useRef<HTMLDivElement | null>(null);
   const hoverDivRef = useRef<HTMLDivElement>(null);
   const sceneRef = useRef(new THREE.Scene());
-  const { setLoading } = useLoading();
-
   const [character, setChar] = useState<THREE.Object3D | null>(null);
   useEffect(() => {
     if (canvasDiv.current) {
@@ -54,7 +50,6 @@ const Scene = () => {
       const clock = new THREE.Clock();
 
       const light = setLighting(scene);
-      let progress = setProgress((value) => setLoading(value));
       const { loadCharacter } = setCharacter(renderer, scene, camera);
 
       let isMounted = true;
@@ -70,21 +65,23 @@ const Scene = () => {
           mixer = animations.mixer;
           let character = gltf.scene;
           setChar(character);
+          // Hide the character until intro is ready — prevents flash at wrong position
+          character.visible = false;
           scene.add(character);
           mmChar = setCharTimeline(character, camera);
           mmAll = setAllTimeline();
           headBone = character.getObjectByName("spine006") || null;
           screenLight = character.getObjectByName("screenlight") || null;
-          progress.loaded().then(() => {
-            setTimeout(() => {
-              light.turnOnLights();
-              animations.startIntro();
-            }, 2500);
-          });
+          // No loading screen — turn on lights and start intro after model loads
+          setTimeout(() => {
+            // Make character visible right before intro plays
+            character.visible = true;
+            light.turnOnLights();
+            animations.startIntro();
+          }, 300);
         }
       }).catch((e) => {
         console.error("3D Model Error: " + e);
-        progress.loaded();
       });
       const handleResizeWrapper = () => {
         handleResize(renderer, camera, canvasDiv, null as any);

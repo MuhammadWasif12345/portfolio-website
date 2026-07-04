@@ -5,7 +5,6 @@ import {
   useEffect,
   useState,
 } from "react";
-import Loading from "../components/Loading";
 
 interface LoadingType {
   isLoading: boolean;
@@ -16,19 +15,33 @@ interface LoadingType {
 export const LoadingContext = createContext<LoadingType | null>(null);
 
 export const LoadingProvider = ({ children }: PropsWithChildren) => {
-  const [isLoading, setIsLoading] = useState(true);
-  const [loading, setLoading] = useState(0);
+  // Loading screen removed for instant load performance.
+  // isLoading is kept in context so existing consumers don't break.
+  const [isLoading, setIsLoading] = useState(false);
+  const [loading, setLoading] = useState(100);
 
   const value = {
     isLoading,
     setIsLoading,
     setLoading,
   };
-  useEffect(() => {}, [loading]);
+
+  useEffect(() => {
+    // Trigger entrance animations immediately after first render
+    if ((window as any).initialFXRan) return;
+    (window as any).initialFXRan = true;
+    import("../components/utils/initialFX").then((module) => {
+      if (module.initialFX) {
+        // Small timeout ensures DOM is fully painted before animations start
+        setTimeout(() => {
+          module.initialFX();
+        }, 50);
+      }
+    });
+  }, []);
 
   return (
     <LoadingContext.Provider value={value as LoadingType}>
-      {isLoading && <Loading percent={loading} />}
       <main className="main-body">{children}</main>
     </LoadingContext.Provider>
   );

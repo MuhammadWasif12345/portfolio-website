@@ -615,6 +615,11 @@ h2.landing-info-h2 {
     bottom: 0;
     z-index: 11;
     position: fixed;
+    /* Override base CSS left:50% + transform centering.
+       The 3D canvas fills full viewport (left:0, width:100%).
+       GSAP animates x:0 (centered) → x:-25% (shifted left for About text). */
+    left: 0;
+    transform: none;
   }
 
   .character-model::after,

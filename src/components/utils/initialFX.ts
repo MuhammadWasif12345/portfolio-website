@@ -3,7 +3,9 @@ import gsap from "gsap";
 import { lenis } from "../Navbar";
 
 export function initialFX() {
+  // Ensure scroll is always enabled (works with or without loading screen)
   document.body.style.overflowY = "auto";
+  document.body.style.overflow = ""; // let CSS control overflow-x
   if (lenis) {
     lenis.start();
   }
