@@ -103,6 +103,15 @@ export const config = {
     ],
     projects: [
         {
+            id: 9,
+            title: "Eye Fashion",
+            category: "E-Commerce",
+            technologies: "React, Node.js, MongoDB, TailwindCSS",
+            image: "/images/eyefashion.png",
+            description: "A premium eyewear e-commerce platform offering a wide range of sunglasses, eyeglasses, and contact lenses. Features an elegant user interface, 15% discount integration, and a seamless checkout experience.",
+            link: "https://eyefashion.pk"
+        },
+        {
             id: 1,
             title: "NOVA AI",
             category: "AI / LLM",
