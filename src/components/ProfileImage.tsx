@@ -45,7 +45,7 @@ const ProfileImage = () => {
         .fromTo(
           ".profile-model",
           { pointerEvents: "inherit" },
-          { pointerEvents: "none", x: "-12vw", delay: 2, duration: 5 },
+          { pointerEvents: "none", x: 0, delay: 2, duration: 5 },
           0
         )
         .fromTo(
