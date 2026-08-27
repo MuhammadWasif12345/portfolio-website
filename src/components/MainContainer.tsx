@@ -16,6 +16,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
+import { setAllTimeline } from "./utils/GsapScroll";
 
 const MainContainer = ({ children }: PropsWithChildren) => {
   const [isDesktopView, setIsDesktopView] = useState(window.innerWidth > 1024);
@@ -33,10 +34,13 @@ const MainContainer = ({ children }: PropsWithChildren) => {
 
     window.addEventListener("resize", resizeHandler);
     setSplitText();
+    
+    let mmAll = setAllTimeline();
 
     return () => {
       window.removeEventListener("resize", resizeHandler);
       ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+      mmAll.revert();
       clearTimeout(resizeTimer);
     };
   }, []);
