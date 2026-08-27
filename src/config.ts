@@ -120,12 +120,13 @@ export const config = {
             description: "An advanced, intelligent AI chatbot powered by a custom Large Language Model. Features natural language understanding, contextual conversations, and seamless real-time responses."
         },
         {
-            id: 2,
-            title: "VoteChain",
-            category: "Blockchain",
-            technologies: "Solidity, Web3.js, React, Ethereum, IPFS, MetaMask, Node.js",
-            image: "/images/votechain.png",
-            description: "A decentralized election system built on blockchain technology ensuring transparent, tamper-proof, and verifiable voting. Features smart contracts for vote integrity and real-time result tracking."
+            id: 10,
+            title: "AI Smart Civic",
+            category: "AI-Powered Civic Intelligence",
+            technologies: "React, Next.js, AI, TailwindCSS",
+            image: "/images/aismartcivic.png",
+            description: "Report civic issues in seconds. Our AI engine automatically understands your complaint, determines urgency, categorizes the issue, and routes it directly to the appropriate municipal team.",
+            link: "https://ai-smart-civic-platform-upy1.vercel.app/"
         },
         {
             id: 3,
