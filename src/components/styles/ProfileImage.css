@@ -1,12 +1,12 @@
 .profile-container {
-  position: absolute;
-  top: 30%;
+  position: fixed;
+  top: 50%;
   left: 50%;
   width: 100%;
   max-width: 400px;
   height: 400px;
   z-index: 11;
-  transform: translateX(-50%);
+  transform: translate(-50%, -50%);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -71,7 +71,11 @@
 /* Tablet adjustments */
 @media screen and (max-width: 1024px) {
   .profile-container {
-    top: 25%;
+    position: relative;
+    top: auto;
+    left: auto;
+    transform: none;
+    margin: 2rem auto;
     height: 300px;
   }
   
@@ -89,11 +93,11 @@
     left: auto;
     transform: none;
     margin: 2rem auto;
-    height: 250px;
+    height: 320px;
   }
 
   .profile-model {
-    width: 220px;
-    height: 220px;
+    width: 280px;
+    height: 280px;
   }
 }
