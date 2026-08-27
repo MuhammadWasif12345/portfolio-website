@@ -42,7 +42,6 @@ const ProfileImage = () => {
       tl2
         .to(".about-section", { y: "30%", duration: 6 }, 0)
         .to(".about-section", { opacity: 0, delay: 3, duration: 2 }, 0)
-        .to(".profile-model", { opacity: 0, delay: 4, duration: 2 }, 0)
         .fromTo(
           ".profile-model",
           { pointerEvents: "inherit" },
@@ -66,7 +65,8 @@ const ProfileImage = () => {
         scrollTrigger: {
           trigger: ".whatIDO",
           start: "top top",
-          end: "bottom top",
+          end: "+=150%", // Extended scrub distance to slow down the scroll
+          pin: true,     // Pin the section so it's easy to read
           scrub: true,
           invalidateOnRefresh: true,
         },
@@ -76,7 +76,7 @@ const ProfileImage = () => {
         .fromTo(
           ".profile-model",
           { y: "0%" },
-          { y: "-50vh", duration: 2, ease: "power2.out", delay: 0 },
+          { y: "-100vh", duration: 4, ease: "none", delay: 1 },
           0
         )
         .fromTo(".whatIDO", { y: 0 }, { y: "15%", duration: 2 }, 0);
