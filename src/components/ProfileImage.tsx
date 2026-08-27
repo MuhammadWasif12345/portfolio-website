@@ -24,7 +24,7 @@ const ProfileImage = () => {
       });
 
       tl1
-        .fromTo(".profile-model", { x: 0 }, { x: "-25%", duration: 1 }, 0)
+        .fromTo(".profile-model", { x: 0 }, { x: "-25vw", duration: 1 }, 0)
         .to(".landing-container", { opacity: 0, duration: 0.4 }, 0)
         .to(".landing-container", { y: "40%", duration: 0.8 }, 0)
         .fromTo(".about-me", { y: "-50%" }, { y: "0%" }, 0);
@@ -45,7 +45,7 @@ const ProfileImage = () => {
         .fromTo(
           ".profile-model",
           { pointerEvents: "inherit" },
-          { pointerEvents: "none", x: "-12%", delay: 2, duration: 5 },
+          { pointerEvents: "none", x: "-12vw", delay: 2, duration: 5 },
           0
         )
         .fromTo(
