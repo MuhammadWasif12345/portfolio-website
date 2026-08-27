@@ -1,0 +1,99 @@
+.profile-container {
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  width: 100%;
+  max-width: 400px;
+  height: 400px;
+  z-index: 11;
+  transform: translateX(-50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  pointer-events: none;
+}
+
+.profile-model {
+  position: relative;
+  width: 350px;
+  height: 350px;
+  animation: float 6s ease-in-out infinite;
+}
+
+/* Glowing rim behind the profile picture to match the aesthetic */
+.profile-rim {
+  position: absolute;
+  top: -20px;
+  left: -20px;
+  right: -20px;
+  bottom: -20px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(200, 191, 255, 0.4) 0%, rgba(200, 191, 255, 0) 70%);
+  z-index: -1;
+  filter: blur(15px);
+  animation: pulse 4s ease-in-out infinite alternate;
+}
+
+/* The actual profile image */
+.profile-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 4px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 20px rgba(200, 191, 255, 0.2);
+  pointer-events: auto; /* Re-enable pointer events for the image itself */
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 0.5;
+    transform: scale(0.9);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1.1);
+  }
+}
+
+/* Tablet adjustments */
+@media screen and (max-width: 1024px) {
+  .profile-container {
+    top: 25%;
+    height: 300px;
+  }
+  
+  .profile-model {
+    width: 280px;
+    height: 280px;
+  }
+}
+
+/* Mobile adjustments */
+@media screen and (max-width: 768px) {
+  .profile-container {
+    position: relative;
+    top: auto;
+    left: auto;
+    transform: none;
+    margin: 2rem auto;
+    height: 250px;
+  }
+
+  .profile-model {
+    width: 220px;
+    height: 220px;
+  }
+}

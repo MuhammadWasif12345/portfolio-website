@@ -4,7 +4,7 @@ import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/react";
 import "./App.css";
 
-const CharacterModel = lazy(() => import("./components/Character"));
+const ProfileImage = lazy(() => import("./components/ProfileImage"));
 const MainContainer = lazy(() => import("./components/MainContainer"));
 const MyWorks = lazy(() => import("./pages/MyWorks"));
 const Play = lazy(() => import("./pages/Play"));
@@ -21,7 +21,7 @@ const App = () => {
               <Suspense>
                 <MainContainer>
                   <Suspense>
-                    <CharacterModel />
+                    <ProfileImage />
                   </Suspense>
                 </MainContainer>
               </Suspense>
