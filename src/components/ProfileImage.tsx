@@ -109,8 +109,10 @@ const ProfileImage = () => {
   return (
     <div className="profile-container" ref={containerRef}>
       <div className="profile-model">
-        <div className="profile-rim"></div>
-        <img src="/images/profile_logo.jpg" alt="Muhammad Wasif" className="profile-image" />
+        <div className="profile-float">
+          <div className="profile-rim"></div>
+          <img src="/images/profile_logo.jpg" alt="Muhammad Wasif" className="profile-image" />
+        </div>
       </div>
     </div>
   );
