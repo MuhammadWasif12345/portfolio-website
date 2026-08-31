@@ -113,11 +113,12 @@ export const config = {
         },
         {
             id: 1,
-            title: "NOVA AI",
-            category: "AI / LLM",
-            technologies: "Python, PyTorch, Transformers, FastAPI, React, MongoDB",
-            image: "/images/nova_ai.png",
-            description: "An advanced, intelligent AI chatbot powered by a custom Large Language Model. Features natural language understanding, contextual conversations, and seamless real-time responses."
+            title: "Bhai Fries POS",
+            category: "Point of Sale",
+            technologies: "React, Node.js, TailwindCSS",
+            image: "/images/bhai-fries-pos.jpeg",
+            description: "A modern Point of Sale (POS) system for Bhai Fries Street Cafe. Features intuitive order management, real-time cart calculations, dynamic menu categorization, and streamlined checkout.",
+            link: "https://bhai-fries-pos.vercel.app/"
         },
         {
             id: 10,
